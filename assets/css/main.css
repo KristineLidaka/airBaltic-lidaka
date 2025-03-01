@@ -1,0 +1,32 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+@import "tailwindcss";
+
+@theme {
+    --color-brand-green: #CDDA32;
+    --color-brand-blue: #152649;
+    --color-brand-blue-ui: #313892;
+    --color-custom-gray-70: #7E7E7E;
+    --color-custom-gray-50: #999999;
+    --color-custom-gray-20: #E2E4E9;
+    --color-custom-gray-10: #F9F9F9;
+    --color-warning: #FFFFCC;
+    --color-info: #E5F6FF;
+    --color-form-subtext: #152649;
+    --color-form-border: #CED2D7;
+    --color-footer-text: #333333;
+
+    --text-header: 2.5rem; /* 40px */
+
+    --spacing-custom: 140px;
+    --spacing-alert: 72px;
+    --spacing-form-text: 7px;
+    --spacing-form-right-padding: 60px;
+    --spacing-button-width: 120px;
+    --spacing-button-height: 44px;
+    --spacing-confirmation-button-width: 160px;
+    --spacing-confirmation-button-height: 52px;
+  }
+
+  html {
+    font-family: "Roboto", sans-serif;
+  }
