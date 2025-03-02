@@ -1,14 +1,17 @@
 <template>
   <div>
     <PageHeader />
-    <div class="flex items-start">
+    <!--flex items-start-->
+    <div class="md:flex md:items-start">
       <SidebarNavigation
+        v-if="!isMobile"
         class="h-auto"
         :navigationSidebar="navigationSidebar"
       />
-      <PageBody class="flex-1" />
+      <PageBody class="flex-none md:flex-1" />
     </div>
-    <PageFooter />
+    <PageFooterMobile v-if="isMobile" />
+    <PageFooter v-else/>
   </div>
 </template>
 
@@ -18,6 +21,7 @@ import PageHeader from "./components/pageHeader.vue";
 import SidebarNavigation from "./components/sidebarNavigation.vue";
 import PageBody from "./components/pageBody.vue";
 import PageFooter from "./components/pageFooter.vue";
+import PageFooterMobile from "./components/pageFooterMobile.vue";
 
 interface NavigationSidebar {
   name: string;
@@ -36,4 +40,19 @@ const navigationSidebar = ref<NavigationSidebar[]>([
   { name: "Request assistance from us" },
   { name: "Other inquiries", link: "other-inquiries" },
 ]);
+
+const isMobile = ref(false);
+
+const checkIsMobile = () => {
+  isMobile.value = window.matchMedia("(max-width: 768px)").matches;
+};
+
+onMounted(() => {
+  checkIsMobile();
+  window.addEventListener("resize", checkIsMobile);
+});
+
+onUnmounted(() => {
+  window.removeEventListener("resize", checkIsMobile);
+});
 </script>

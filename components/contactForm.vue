@@ -53,7 +53,6 @@ const updateContactDetails = (data: {
   countryCode: string;
   phoneNumber: string;
 }) => {
-  console.warn("data", data);
   contactDetails.value = data;
 };
 
@@ -63,7 +62,6 @@ const updateFlightDetails = (data: {
   month: number;
   year: number;
 }) => {
-  console.warn("data", data);
   flightDetails.value = data;
 };
 

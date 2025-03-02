@@ -1,5 +1,7 @@
 <template>
-  <div class="grid grid-cols-2 pt-8 pl-6 gap-4 pr-form-right-padding">
+  <div
+    class="grid grid-cols-1 md:grid-cols-2 pt-4 md:pt-8 pl-5 md:pl-6 gap-4 pr-5 md:pr-form-right-padding"
+  >
     <div>
       <h3 class="text-brand-blue font-medium mb-form-text">Select flight</h3>
       <p class="text-xs text-form-subtext/[.64]">
@@ -49,20 +51,22 @@
         </div>
       </div>
       <p class="text-form-subtext/[.64] text-xs mb-7">For example: 30 8 1972</p>
-      <button
-        class="border border-brand-blue-ui rounded-md text-brand-blue-ui text-sm w-button-width h-button-height mr-5 font-bold"
-      >
-        Add flight
-      </button>
-      <button
-        class="text-sm w-button-width h-button-height font-bold"
-        :class="{
-          'text-form-subtext/[.64]': disabled,
-          'text-brand-blue-ui': !disabled,
-        }"
-      >
-        Delete flight
-      </button>
+      <div class="flex justify-center md:justify-start items-center">
+        <button
+          class="border border-brand-blue-ui rounded-md text-brand-blue-ui text-sm w-button-width h-button-height mr-5 font-bold"
+        >
+          Add flight
+        </button>
+        <button
+          class="text-sm w-button-width h-button-height font-bold"
+          :class="{
+            'text-form-subtext/[.64]': disabled,
+            'text-brand-blue-ui': !disabled,
+          }"
+        >
+          Delete flight
+        </button>
+      </div>
     </div>
   </div>
 </template>
@@ -85,7 +89,7 @@ const disabled = ref<boolean>(true);
 
 const currentYear = new Date().getFullYear();
 const yearOptions = computed(() => {
-  const years = [];
+  const years: number[] = [];
   for (let i = currentYear; i >= currentYear - 10; i--) {
     years.push(i);
   }

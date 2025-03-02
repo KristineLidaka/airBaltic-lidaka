@@ -1,5 +1,7 @@
 <template>
-  <div class="grid grid-cols-2 pt-8 pl-6 gap-4 pr-form-right-padding">
+  <div
+    class="grid grid-cols-1 md:grid-cols-2 pt-4 md:pt-8 pl-5 md:pl-6 gap-4 pr-5 md:pr-form-right-padding"
+  >
     <div>
       <h3 class="text-brand-blue font-medium mb-form-text">Contact details</h3>
       <p class="text-xs text-form-subtext/[.64]">
