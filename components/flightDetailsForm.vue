@@ -20,40 +20,58 @@
           @blur="updateFormData"
           class="bg-white border h-12 mb-4 border-form-border w-full"
         />
+        <p v-if="flightErrors?.flightNumber" class="text-red-500 text-xs mt-1">
+          {{ flightErrors.flightNumber }}
+        </p>
       </div>
       <p class="text-xs mb-2"><label for="day">Flight date</label></p>
       <div class="flex space-x-2 mb-2">
-        <input
-          id="day"
-          v-model="day"
-          @blur="updateFormData"
-          placeholder="DD"
-          class="bg-white border h-12 border-form-border w-1/3 text-center"
-        />
-        <input
-          id="month"
-          v-model="month"
-          @blur="updateFormData"
-          placeholder="MM"
-          class="bg-white border h-12 border-form-border w-1/3 text-center"
-        />
-        <div class="custom-select-wrapper w-1/3">
-          <select
-            id="year"
-            v-model="year"
+        <div class="w-1/3">
+          <input
+            id="day"
+            v-model="day"
             @blur="updateFormData"
-            class="bg-white border h-12 border-form-border w-full custom-select"
-            aria-label="Year"
-          >
-            <option value="" disabled selected hidden>YYYY</option>
-            <option
-              v-for="yearOption in yearOptions"
-              :key="yearOption"
-              :value="yearOption"
+            placeholder="DD"
+            class="bg-white border h-12 border-form-border w-full text-center"
+          />
+          <p v-if="flightErrors?.day" class="text-red-500 text-xs mt-1">
+            {{ flightErrors.day }}
+          </p>
+        </div>
+        <div class="w-1/3">
+          <input
+            id="month"
+            v-model="month"
+            @blur="updateFormData"
+            placeholder="MM"
+            class="bg-white border h-12 border-form-border w-full text-center"
+          />
+          <p v-if="flightErrors?.month" class="text-red-500 text-xs mt-1">
+            {{ flightErrors.month }}
+          </p>
+        </div>
+        <div class="w-1/3">
+          <div class="custom-select-wrapper">
+            <select
+              id="year"
+              v-model="year"
+              @blur="updateFormData"
+              class="bg-white border h-12 border-form-border w-full custom-select"
+              aria-label="Year"
             >
-              {{ yearOption }}
-            </option>
-          </select>
+              <option value="" disabled selected hidden>YYYY</option>
+              <option
+                v-for="yearOption in yearOptions"
+                :key="yearOption"
+                :value="yearOption"
+              >
+                {{ yearOption }}
+              </option>
+            </select>
+          </div>
+          <p v-if="flightErrors?.year" class="text-red-500 text-xs mt-1">
+            {{ flightErrors.year }}
+          </p>
         </div>
       </div>
       <p class="text-form-subtext/[.64] text-xs mb-7">For example: 30 8 1972</p>
@@ -81,9 +99,20 @@
 import { ref, computed } from "vue";
 import { defineEmits, defineProps } from "vue";
 
-const props = defineProps({
-  formData: Object,
-});
+const props = defineProps<{
+  formData: {
+    flightNumber: string;
+    day: number;
+    month: number;
+    year: number;
+  };
+  flightErrors: {
+    flightNumber?: string;
+    day?: string;
+    month?: string;
+    year?: string;
+  };
+}>();
 
 const emit = defineEmits(["update:formData"]);
 

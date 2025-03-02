@@ -2,10 +2,12 @@
   <div class="bg-custom-gray-10 divide-y divide-custom-gray-20 mt-8 rounded-md">
     <ContactDetailsForm
       :formData="contactDetails"
+      :contactErrors="contactErrors"
       @update:formData="updateContactDetails"
     />
     <FlightDetailsForm
       :formData="flightDetails"
+      :flightErrors="flightErrors"
       @update:formData="updateFlightDetails"
     />
     <ConfirmationForm
@@ -18,7 +20,7 @@
 
 <script setup lang="ts">
 import { ref } from "vue";
-import { z } from "zod";
+import { z, ZodError } from "zod";
 import { useRequestedAssistanceStore } from "../stores/requestedAssistancePinia";
 import ConfirmationForm from "./confirmationForm.vue";
 import ContactDetailsForm from "./contactDetailsForm.vue";
@@ -46,6 +48,20 @@ const flightDetails = ref<{
   month: 0,
   year: 0,
 });
+
+const contactErrors = ref<{
+  name?: string;
+  email?: string;
+  countryCode?: string;
+  phoneNumber?: string;
+}>({});
+
+const flightErrors = ref<{
+  flightNumber?: string;
+  day?: string;
+  month?: string;
+  year?: string;
+}>({});
 
 const updateContactDetails = (data: {
   name: string;
@@ -94,6 +110,7 @@ const handleSubmit = () => {
     phoneNumber: z
       .string()
       .regex(/^\d{8}$/, "Phone number must contain exactly 8 digits"),
+    flightNumber: z.string().nonempty("Flight number cannot be empty"),
     day: z
       .number()
       .min(1, { message: "Day must be between 1 and 31" })
@@ -124,10 +141,23 @@ const handleSubmit = () => {
         formData.day
       ).toLocaleDateString(),
     });
-  } catch (e: any) {
-    // Handle validation errors
-    console.error(e.errors);
-    // Optionally, display validation errors to the user in an accessible manner
+    contactErrors.value = {};
+    flightErrors.value = {};
+  } catch (e: ZodError | any) {
+    contactErrors.value = {};
+    flightErrors.value = {};
+    e.errors.forEach((error: { path: (keyof FormData)[], message: string }) => {
+      if (
+        error.path.includes("name") ||
+        error.path.includes("email") ||
+        error.path.includes("countryCode") ||
+        error.path.includes("phoneNumber")
+      ) {
+        contactErrors.value[error.path[0] as keyof typeof contactErrors.value] = error.message;
+      } else {
+        flightErrors.value[error.path[0] as keyof typeof flightErrors.value] = error.message;
+      }
+    });
   }
 };
 </script>

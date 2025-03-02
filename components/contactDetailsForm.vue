@@ -14,15 +14,23 @@
         id="name"
         v-model="name"
         @blur="updateFormData"
-        class="bg-white border h-12 mb-4 border-form-border w-full"
+        class="bg-white border h-12 mb-1 border-form-border w-full"
       />
+      <span v-if="contactErrors?.name" class="text-red-500 text-xs">{{
+        contactErrors.name
+      }}</span>
+
       <label for="email" class="text-xs mb-2 inline-block">E-mail</label>
       <input
         id="email"
         v-model="email"
         @blur="updateFormData"
-        class="bg-white border h-12 mb-4 border-form-border w-full"
+        class="bg-white border h-12 mb-1 border-form-border w-full"
       />
+      <span v-if="contactErrors?.email" class="text-red-500 text-xs">{{
+        contactErrors.email
+      }}</span>
+
       <div class="flex space-x-2">
         <div class="w-1/3">
           <label for="countryCode" class="text-xs mb-2 inline-block"
@@ -33,7 +41,7 @@
               id="countryCode"
               v-model="countryCode"
               @blur="updateFormData"
-              class="bg-white border h-12 border-form-border w-full custom-select"
+              class="bg-white border h-12 mb-1 border-form-border w-full custom-select"
               aria-label="Phone country code"
             >
               <option v-for="code in countryCodes" :key="code" :value="code">
@@ -41,6 +49,11 @@
               </option>
             </select>
           </div>
+          <span
+            v-if="contactErrors?.countryCode"
+            class="text-red-500 text-xs"
+            >{{ contactErrors.countryCode }}</span
+          >
         </div>
         <div class="w-2/3">
           <label for="phoneNumber" class="text-xs mb-2 inline-block"
@@ -50,8 +63,13 @@
             id="phoneNumber"
             v-model="phoneNumber"
             @blur="updateFormData"
-            class="bg-white border h-12 border-form-border w-full"
+            class="bg-white border h-12 mb-1 border-form-border w-full"
           />
+          <span
+            v-if="contactErrors?.phoneNumber"
+            class="text-red-500 text-xs"
+            >{{ contactErrors.phoneNumber }}</span
+          >
         </div>
       </div>
     </div>
@@ -62,16 +80,27 @@
 import { ref } from "vue";
 import { defineEmits, defineProps } from "vue";
 
-const props = defineProps({
-  formData: Object,
-});
+const props = defineProps<{
+  formData: {
+    name: string;
+    email: string;
+    countryCode: string;
+    phoneNumber: string;
+  };
+  contactErrors: {
+    name?: string;
+    email?: string;
+    countryCode?: string;
+    phoneNumber?: string;
+  };
+}>();
 
 const emit = defineEmits(["update:formData"]);
 
 const countryCodes = ref<string[]>(["+371", "+372", "+373", "+374"]);
 
-const name = ref<string>("");
-const email = ref<string>("");
+const name = ref<string>();
+const email = ref<string>();
 const countryCode = ref<string>("+371"); // Set the initial value to '+371'
 const phoneNumber = ref<string>();
 

@@ -1,7 +1,6 @@
 <template>
   <div>
     <PageHeader />
-    <!--flex items-start-->
     <div class="md:flex md:items-start">
       <SidebarNavigation
         v-if="!isMobile"
