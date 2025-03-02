@@ -1,5 +1,5 @@
 <template>
-  <div class="mt-custom-22 md:mt-12 mr-0 md:mr-custom mb-16">
+  <div class="mt-custom-22 md:mt-12 mr-0 md:mr-custom mb-5 md:mb-16">
     <h1
       class="text-mobile-header md:text-header text-brand-blue font-light mb-custom-22 md:mb-7 mr-8 md:mr-0 ml-5 md:ml-0"
     >

@@ -1,18 +1,18 @@
 <template>
   <div
-    class="mx-custom border-t border-t-form-border flex justify-between items-center"
+    class="mx-5 md:mx-custom md:border-t border-t-form-border flex md:flex-row flex-col-reverse md:justify-between"
   >
-    <div class="flex space-x-14">
+    <div class="flex md:space-x-14 space-x-0 md:flex-row flex-col">
       <a
         v-for="link in copyrightLinks"
         :key="link.name"
         :href="link.link"
-        class="h-9 mt-3 mb-8 flex items-center text-[13px] text-footer-text"
+        class="h-9 md:mt-3 md:mb-8 flex items-center text-[13px] text-footer-text"
       >
         {{ link.name }}
       </a>
     </div>
-    <div class="h-9 mt-3 mb-8 flex justify-center items-center">
+    <div class="h-9 mt-8 md:mt-3 md:mb-8 flex items-center md:justify-center">
       <p class="text-custom-gray-50 text-[13px]">© 2017 airBaltic</p>
     </div>
   </div>

@@ -1,29 +1,40 @@
 <template>
-  <div class="flex justify-between pl-custom pt-9">
-    <div class="w-1/4" v-for="(footerLink, index) in FooterLinks" :key="index">
-      <h3 class="mb-2 uppercase font-medium text-sm text-footer-text">
-        {{ footerLink.header }}
-      </h3>
-      <ul>
-        <li
-          v-for="(link, linkIndex) in footerLink.links"
-          :key="linkIndex"
-          class="mb-1"
+  <div class="px-5 md:pl-custom md:pt-9">
+    <div class="mt-1 md:mt-0 md:flex md:justify-between">
+      <div
+        class="w-full md:w-1/4"
+        v-for="(footerLink, index) in FooterLinks"
+        :key="index"
+      >
+        <div
+          class="flex justify-between items-center h-12 md:h-auto border-b border-b-form-border md:border-none"
         >
-          <a
-            :href="link.link"
-            class="flex items-center text-sm h-9 text-footer-text"
+          <h3 class="md:mb-2 uppercase font-medium text-sm text-footer-text">
+            {{ footerLink.header }}
+          </h3>
+          <Icon name="ic:baseline-plus" class="visible md:invisible md:flex" />
+        </div>
+        <ul class="hidden md:block">
+          <li
+            v-for="(link, linkIndex) in footerLink.links"
+            :key="linkIndex"
+            class="mb-1"
           >
-            {{ link.name }}
-            <img
-              v-if="link.icon"
-              :src="link.icon.src"
-              :alt="link.icon.alt"
-              class="ml-2 inline-block"
-            />
-          </a>
-        </li>
-      </ul>
+            <a
+              :href="link.link"
+              class="flex items-center text-sm h-9 text-footer-text"
+            >
+              {{ link.name }}
+              <img
+                v-if="link.icon"
+                :src="link.icon.src"
+                :alt="link.icon.alt"
+                class="ml-2 inline-block"
+              />
+            </a>
+          </li>
+        </ul>
+      </div>
     </div>
   </div>
 </template>

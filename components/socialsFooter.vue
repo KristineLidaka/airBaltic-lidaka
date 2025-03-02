@@ -1,13 +1,16 @@
 <template>
-  <div class="pt-9 mx-custom">
-    <div class="ml-8 mb-10">
-      <p class="mb-2 uppercase font-medium text-sm text-footer-text">
-        Subscribe to newsletter
-      </p>
+  <div class="md:pt-9 mx-5 md:mx-custom">
+    <div class="md:ml-8 md:mb-10">
+      <div class="h-12 md:h-auto flex justify-between items-center">
+        <p class="mb-2 uppercase font-medium text-sm text-footer-text">
+          Subscribe to newsletter
+        </p>
+      </div>
+
       <div class="relative">
         <input
           v-model="email"
-          class="bg-white border h-12 mb-4 border-form-border w-full pl-4"
+          class="bg-white border h-12 mb-7 md:mb-4 border-form-border w-full pl-4"
           type="email"
           placeholder="Enter your email"
         />
@@ -18,7 +21,7 @@
         <p v-if="error" class="text-red-500 text-xs mt-2">{{ error }}</p>
       </div>
     </div>
-    <div class="relative mb-14">
+    <div class="relative mb-9 md:mb-14">
       <img
         :src="RedirectIcon"
         alt="RedirectIcon"
@@ -29,7 +32,7 @@
         accessibility policies.
       </p>
     </div>
-    <div class="flex justify-end pt-2 ml-7 space-x-2.5">
+    <div class="flex justify-start md:justify-end pt-2 md:ml-7 space-x-2.5">
       <div
         v-for="social in socials"
         :key="social.name"

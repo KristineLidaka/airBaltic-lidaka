@@ -1,6 +1,9 @@
 <template>
-  <div>
+  <div class="bg-custom-gray-10">
     <LinksFooter />
+    <SocialsFooter />
+    <CopyrightFooter />
+    <LogosFooter />
   </div>
 </template>
 
