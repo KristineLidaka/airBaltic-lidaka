@@ -1,6 +1,6 @@
 <template>
-  <div class="bg-custom-gray-10">
-    <div class="flex">
+  <div class="bg-custom-gray-10" role="contentinfo">
+    <div class="flex" role="navigation" aria-label="Footer Navigation">
       <div>
         <LinksFooter />
         <LogosFooter />

@@ -8,15 +8,19 @@
       </div>
 
       <div class="relative">
+        <label for="email" class="sr-only">Email address</label>
         <input
           v-model="email"
+          id="email"
           class="bg-white border h-12 mb-7 md:mb-4 border-form-border w-full pl-4"
           type="email"
           placeholder="Enter your email"
+          aria-label="Enter your email"
         />
         <button
           @click="handleSubmit"
           class="input-arrow absolute right-0 top-0 h-12 w-10"
+          aria-label="Submit email"
         ></button>
         <p v-if="error" class="text-red-500 text-xs mt-2">{{ error }}</p>
       </div>

@@ -23,8 +23,8 @@
       </li>
     </ul>
     <div class="grid grid-cols-1 md:grid-cols-2 gap-0 md:gap-5 mt-6">
-      <AlertInfo :text="infoText" />
-      <AlertWarning :text="warningText" />
+      <AlertInfo :text="infoText" role="alert" />
+      <AlertWarning :text="warningText" role="alert" />
     </div>
     <ContactForm />
   </div>

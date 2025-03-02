@@ -11,22 +11,27 @@
     </div>
     <div class="mb-9">
       <div>
-        <p class="text-xs mb-2">Flight number</p>
+        <p class="text-xs mb-2">
+          <label for="flightNumber">Flight number</label>
+        </p>
         <input
+          id="flightNumber"
           v-model="flightNumber"
           @blur="updateFormData"
           class="bg-white border h-12 mb-4 border-form-border w-full"
         />
       </div>
-      <p class="text-xs mb-2">Flight date</p>
+      <p class="text-xs mb-2"><label for="day">Flight date</label></p>
       <div class="flex space-x-2 mb-2">
         <input
+          id="day"
           v-model="day"
           @blur="updateFormData"
           placeholder="DD"
           class="bg-white border h-12 border-form-border w-1/3 text-center"
         />
         <input
+          id="month"
           v-model="month"
           @blur="updateFormData"
           placeholder="MM"
@@ -34,6 +39,7 @@
         />
         <div class="custom-select-wrapper w-1/3">
           <select
+            id="year"
             v-model="year"
             @blur="updateFormData"
             class="bg-white border h-12 border-form-border w-full custom-select"

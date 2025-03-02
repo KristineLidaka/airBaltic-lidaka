@@ -5,11 +5,16 @@
         class="w-full md:w-1/4"
         v-for="(footerLink, index) in FooterLinks"
         :key="index"
+        role="region"
+        :aria-labelledby="'footer-link-' + index"
       >
         <div
           class="flex justify-between items-center h-12 md:h-auto border-b border-b-form-border md:border-none"
         >
-          <h3 class="md:mb-2 uppercase font-medium text-sm text-footer-text">
+          <h3
+            class="md:mb-2 uppercase font-medium text-sm text-footer-text"
+            :id="'footer-link-' + index"
+          >
             {{ footerLink.header }}
           </h3>
           <Icon name="ic:baseline-plus" class="visible md:invisible md:flex" />
@@ -23,6 +28,7 @@
             <a
               :href="link.link"
               class="flex items-center text-sm h-9 text-footer-text"
+              role="link"
             >
               {{ link.name }}
               <img

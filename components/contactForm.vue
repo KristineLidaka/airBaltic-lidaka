@@ -127,6 +127,7 @@ const handleSubmit = () => {
   } catch (e: any) {
     // Handle validation errors
     console.error(e.errors);
+    // Optionally, display validation errors to the user in an accessible manner
   }
 };
 </script>

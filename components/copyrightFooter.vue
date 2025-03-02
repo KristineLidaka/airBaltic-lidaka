@@ -7,7 +7,9 @@
         v-for="link in copyrightLinks"
         :key="link.name"
         :href="link.link"
-        class="h-9 md:mt-3 md:mb-8 flex items-center text-[13px] text-footer-text"
+        :aria-label="link.name"
+        :title="link.name"
+        class="h-9 md:mt-3 md:mb-8 flex items-center text-[13px] text-footer-text focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-footer-text"
       >
         {{ link.name }}
       </a>

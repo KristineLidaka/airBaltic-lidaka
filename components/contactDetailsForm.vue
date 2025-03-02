@@ -9,23 +9,28 @@
       </p>
     </div>
     <div class="mb-8">
-      <p class="text-xs mb-2">Name, surname</p>
+      <label for="name" class="text-xs mb-2 inline-block">Name, surname</label>
       <input
+        id="name"
         v-model="name"
         @blur="updateFormData"
         class="bg-white border h-12 mb-4 border-form-border w-full"
       />
-      <p class="text-xs mb-2">E-mail</p>
+      <label for="email" class="text-xs mb-2 inline-block">E-mail</label>
       <input
+        id="email"
         v-model="email"
         @blur="updateFormData"
         class="bg-white border h-12 mb-4 border-form-border w-full"
       />
       <div class="flex space-x-2">
         <div class="w-1/3">
-          <p class="text-xs mb-2">Country code</p>
+          <label for="countryCode" class="text-xs mb-2 inline-block"
+            >Country code</label
+          >
           <div class="custom-select-wrapper">
             <select
+              id="countryCode"
               v-model="countryCode"
               @blur="updateFormData"
               class="bg-white border h-12 border-form-border w-full custom-select"
@@ -38,8 +43,11 @@
           </div>
         </div>
         <div class="w-2/3">
-          <p class="text-xs mb-2">Phone number</p>
+          <label for="phoneNumber" class="text-xs mb-2 inline-block"
+            >Phone number</label
+          >
           <input
+            id="phoneNumber"
             v-model="phoneNumber"
             @blur="updateFormData"
             class="bg-white border h-12 border-form-border w-full"

@@ -1,5 +1,9 @@
 <template>
-  <div class="border-b border-custom-gray-20">
+  <div
+    class="border-b border-custom-gray-20"
+    role="navigation"
+    aria-label="Breadcrumb"
+  >
     <ul class="flex ml-custom">
       <li
         v-for="(breadcrumb, index) in breadcrumbList"
@@ -14,6 +18,7 @@
               !!breadcrumb.link,
           }"
           :href="breadcrumb.link"
+          :aria-label="breadcrumb.name"
         >
           {{ breadcrumb.name }}
         </a>
@@ -21,7 +26,7 @@
           v-if="breadcrumb.link"
           class="p-4"
           :src="Chevron"
-          alt="breadcrumb chevron"
+          :alt="`Navigate to ${breadcrumb.name}`"
         />
       </li>
     </ul>

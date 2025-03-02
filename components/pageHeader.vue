@@ -1,8 +1,8 @@
 <template>
-  <div>
+  <header>
     <div class="block md:flex border-b border-custom-gray-20">
       <div class="flex md:block justify-between items-center">
-        <button class="ml-6 visible md:invisible">
+        <button class="ml-6 visible md:invisible" aria-label="Open menu">
           <img :src="Hamburger" alt="dropdown icon" />
         </button>
         <div
@@ -15,12 +15,13 @@
           />
         </div>
       </div>
-      <div v-if="!isMobile" class="flex flex-col items-end flex-1 mr-custom">
+      <nav v-if="!isMobile" class="flex flex-col items-end flex-1 mr-custom">
         <div class="my-auto">
           <button
             class="text-custom-gray-70 text-xs pl-6 inline-flex items-center"
             :key="index"
             v-for="(button, index) in headerButtons"
+            :aria-label="button.name"
           >
             <img class="pr-2" :src="button.src" :alt="button.alt" />{{
               button.name
@@ -33,22 +34,27 @@
             :key="index"
             @click="navigate(index)"
             v-for="(button, index) of navigationButtons"
+            :aria-label="button.name"
           >
             {{ button.name }}
           </button>
         </div>
-      </div>
+      </nav>
     </div>
     <div v-if="isMobile" class="flex justify-start items-center pl-5 pt-5">
-      <Icon class="text-brand-blue-ui mr-3" name="mingcute:left-line" />
+      <Icon
+        class="text-brand-blue-ui mr-3"
+        name="mingcute:left-line"
+        aria-hidden="true"
+      />
       <p class="text-brand-blue-ui text-xs font-medium">Back to Contact us</p>
     </div>
     <Breadcrumb v-else :breadcrumbList="breadcrumb" />
-  </div>
+  </header>
 </template>
 
 <script setup lang="ts">
-import { ref } from "vue";
+import { ref, onMounted, onUnmounted } from "vue";
 import LanguageShape from "@/assets/LanguageShape.svg";
 import LoginShape from "@/assets/LoginShape.svg";
 import SearchShape from "@/assets/SearchShape.svg";

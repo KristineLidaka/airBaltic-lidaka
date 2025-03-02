@@ -5,16 +5,16 @@
     <div
       class="pr-10 mb-12 pt-4 md:pt-auto md:mb-0 h-full flex items-center order-3 md:order-1 border-t border-r-0 border-t-form-border md:border-t-0 md:border-r"
     >
-      <img :src="GeoTrust" alt="GeoTrust" />
+      <img :src="GeoTrust" alt="GeoTrust Security Seal" />
     </div>
     <div
       class="flex items-center space-x-4 pt-5 md:pt-auto mb-4 md:px-10 h-full gap-2 order-1 md:order-2 border-t border-r-0 border-t-form-border md:border-t-0 md:border-r"
     >
-      <img :src="MasterCard" alt="MasterCard" />
-      <img :src="Visa" alt="Visa" />
-      <img :src="SmartObject" alt="SmartObject" />
-      <img :src="PayPal" alt="PayPal" />
-      <a href="linkToMore" alt="morePayments">
+      <img :src="MasterCard" alt="MasterCard Logo" />
+      <img :src="Visa" alt="Visa Logo" />
+      <img :src="SmartObject" alt="SmartObject Logo" />
+      <img :src="PayPal" alt="PayPal Logo" />
+      <a href="linkToMore" alt="More Payment Options">
         <p class="text-xs text-footer-text underline decoration-brand-green">
           more
         </p>
@@ -23,8 +23,8 @@
     <div
       class="flex items-center space-x-4 py-5 md:py-auto md:pl-10 h-full gap-5 order-2 md:order-3 border-t border-t-form-border md:border-none"
     >
-      <img :src="Capa" alt="Capa" />
-      <img :src="CompanyLogo" alt="CompanyLogo" />
+      <img :src="Capa" alt="Capa Logo" />
+      <img :src="CompanyLogo" alt="Company Logo" />
     </div>
   </div>
 </template>

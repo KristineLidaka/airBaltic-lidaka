@@ -8,6 +8,7 @@
         href="https://www.airbaltic.com/en/privacy-policy"
         target="_blank"
         class="underline"
+        aria-label="Read airBaltic's Privacy Policy"
       >
         Privacy Policy
       </a>
@@ -16,6 +17,7 @@
       <button
         class="rounded-md bg-brand-blue-ui font-bold text-white mb-11 md:mb-9 w-full md:w-confirmation-button-width h-confirmation-button-height"
         @click="submitForm"
+        aria-label="Confirm your submission"
       >
         Confirm
       </button>
