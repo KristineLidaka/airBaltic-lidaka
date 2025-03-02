@@ -10,11 +10,13 @@
       <p class="text-xs mb-2">Name, surname</p>
       <input
         v-model="name"
+        @blur="updateFormData"
         class="bg-white border h-12 mb-4 border-form-border w-full"
       />
       <p class="text-xs mb-2">E-mail</p>
       <input
         v-model="email"
+        @blur="updateFormData"
         class="bg-white border h-12 mb-4 border-form-border w-full"
       />
       <div class="flex space-x-2">
@@ -23,6 +25,7 @@
           <div class="custom-select-wrapper">
             <select
               v-model="countryCode"
+              @blur="updateFormData"
               class="bg-white border h-12 border-form-border w-full custom-select"
               aria-label="Phone country code"
             >
@@ -36,6 +39,7 @@
           <p class="text-xs mb-2">Phone number</p>
           <input
             v-model="phoneNumber"
+            @blur="updateFormData"
             class="bg-white border h-12 border-form-border w-full"
           />
         </div>
@@ -46,13 +50,29 @@
 
 <script setup lang="ts">
 import { ref } from "vue";
+import { defineEmits, defineProps } from "vue";
+
+const props = defineProps({
+  formData: Object,
+});
+
+const emit = defineEmits(["update:formData"]);
 
 const countryCodes = ref<string[]>(["+371", "+372", "+373", "+374"]);
 
 const name = ref<string>("");
 const email = ref<string>("");
 const countryCode = ref<string>("+371"); // Set the initial value to '+371'
-const phoneNumber = ref<number>();
+const phoneNumber = ref<string>();
+
+const updateFormData = () => {
+  emit("update:formData", {
+    name: name.value,
+    email: email.value,
+    countryCode: countryCode.value,
+    phoneNumber: phoneNumber.value,
+  });
+};
 </script>
 
 <style scoped>

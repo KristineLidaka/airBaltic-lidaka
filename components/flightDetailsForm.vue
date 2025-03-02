@@ -12,6 +12,7 @@
         <p class="text-xs mb-2">Flight number</p>
         <input
           v-model="flightNumber"
+          @blur="updateFormData"
           class="bg-white border h-12 mb-4 border-form-border w-full"
         />
       </div>
@@ -19,17 +20,20 @@
       <div class="flex space-x-2 mb-2">
         <input
           v-model="day"
+          @blur="updateFormData"
           placeholder="DD"
           class="bg-white border h-12 border-form-border w-1/3 text-center"
         />
         <input
           v-model="month"
+          @blur="updateFormData"
           placeholder="MM"
           class="bg-white border h-12 border-form-border w-1/3 text-center"
         />
         <div class="custom-select-wrapper w-1/3">
           <select
             v-model="year"
+            @blur="updateFormData"
             class="bg-white border h-12 border-form-border w-full custom-select"
             aria-label="Year"
           >
@@ -64,7 +68,14 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from "vue";
+import { ref, computed } from "vue";
+import { defineEmits, defineProps } from "vue";
+
+const props = defineProps({
+  formData: Object,
+});
+
+const emit = defineEmits(["update:formData"]);
 
 const flightNumber = ref<string>("");
 const day = ref<string>("");
@@ -80,6 +91,15 @@ const yearOptions = computed(() => {
   }
   return years;
 });
+
+const updateFormData = () => {
+  emit("update:formData", {
+    flightNumber: flightNumber.value,
+    day: Number(day.value),
+    month: Number(month.value),
+    year: year.value,
+  });
+};
 </script>
 
 <style scoped>

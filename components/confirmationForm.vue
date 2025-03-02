@@ -12,8 +12,24 @@
     </p>
     <button
       class="rounded-md bg-brand-blue-ui font-bold text-white mb-9 w-confirmation-button-width h-confirmation-button-height"
+      @click="submitForm"
     >
       Confirm
     </button>
   </div>
 </template>
+
+<script setup lang="ts">
+import { defineEmits, defineProps } from "vue";
+
+const props = defineProps({
+  contactDetails: Object,
+  flightDetails: Object,
+});
+
+const emit = defineEmits(["submit"]);
+
+const submitForm = () => {
+  emit("submit");
+};
+</script>

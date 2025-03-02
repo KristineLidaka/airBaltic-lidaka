@@ -4,12 +4,19 @@
       <p class="mb-2 uppercase font-medium text-sm text-footer-text">
         Subscribe to newsletter
       </p>
-      <input
-        v-model="email"
-        class="bg-white border h-12 mb-4 border-form-border w-full pr-10 custom-input-arrow"
-        type="email"
-        placeholder="Enter your email"
-      />
+      <div class="relative">
+        <input
+          v-model="email"
+          class="bg-white border h-12 mb-4 border-form-border w-full pl-4"
+          type="email"
+          placeholder="Enter your email"
+        />
+        <button
+          @click="handleSubmit"
+          class="input-arrow absolute right-0 top-0 h-12 w-10"
+        ></button>
+        <p v-if="error" class="text-red-500 text-xs mt-2">{{ error }}</p>
+      </div>
     </div>
     <div class="relative mb-14">
       <img
@@ -38,6 +45,7 @@
 
 <script setup lang="ts">
 import { ref } from "vue";
+import { z } from "zod";
 import RedirectIcon from "@/assets/RedirectIcon.svg";
 import FaceBookIcon from "@/assets/fb.png";
 import TwitterLogo from "@/assets/twiter.png";
@@ -45,6 +53,23 @@ import InstagramLogo from "@/assets/instagram.png";
 import YouTubeLogo from "@/assets/yt.png";
 
 const email = ref<string>("");
+const error = ref<string | null>(null);
+
+const emailSchema = z.string().email("Invalid email address");
+
+const handleSubmit = () => {
+  try {
+    emailSchema.parse(email.value);
+    error.value = null;
+    console.warn("email.value", email.value);
+    // Save form data to store
+    // store.dispatch('saveEmail', email.value);
+  } catch (e) {
+    if (e instanceof z.ZodError) {
+      error.value = e.errors[0].message;
+    }
+  }
+};
 
 const socials = [
   {
@@ -67,12 +92,7 @@ const socials = [
 </script>
 
 <style scoped>
-.custom-input-arrow {
-  appearance: none;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  background: white url("@/assets/RightArrow.svg") no-repeat right 10px center;
-  text-align: center;
-  padding: 0 30px 0 10px;
+.input-arrow {
+  background: url("@/assets/RightArrow.svg") no-repeat right 10px center;
 }
 </style>
